@@ -402,3 +402,31 @@ select.form-control-dark option {
     border-color: $dark-border !important;
   }
 }
+/* ==========================================
+   FIX CONTRASTO FAQ / ACCORDION CONTATTI
+   ========================================== */
+.accordion-dark .accordion-button,
+.accordion-item .accordion-button {
+  background-color: #181818 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.accordion-dark .accordion-button:not(.collapsed),
+.accordion-item .accordion-button:not(.collapsed) {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.accordion-dark .accordion-body,
+.accordion-item .accordion-body {
+  background-color: #121212 !important;
+  color: #f0f0f0 !important; /* Testo chiaro ad altissima leggibilità */
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.accordion-button::after {
+  filter: invert(1) !important; /* Mantiene la freccia bianca */
+}
