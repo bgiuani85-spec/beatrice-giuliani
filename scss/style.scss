@@ -13,10 +13,10 @@ $light-muted: #666666;
 // Palette Dark (Contatti) - Contrasti Ottimizzati
 $dark-bg: #0f0f0f;
 $dark-card-bg: #181818;
-$dark-text: #ffffff;          // Testo principale bianco puro
-$dark-text-sub: #d0d0d0;      // Sottotitoli / valori ad alto contrasto
+$dark-text: #ffffff;      // Testo principale
+$dark-text-sub: #d0d0d0;  // Sottotitoli / valori ad alto contrasto
 $dark-border: #2e2e2e;
-$dark-muted: #a0a0a0;         // Etichette e legende ben visibili
+$dark-muted: #a0a0a0;     // Etichette ben visibili
 
 // Reset & Base
 *, *::before, *::after {
@@ -29,19 +29,61 @@ body {
   background-color: $light-bg;
   line-height: 1.6;
   letter-spacing: 0.01em;
+  padding-left: 16px;
+  padding-right: 16px;
   -webkit-font-smoothing: antialiased;
+
+  &.page-dark, &.bg-dark-theme, &.bg-black {
+    background-color: $dark-bg !important;
+    color: $dark-text !important;
+
+    header, footer, main {
+      background-color: $dark-bg !important;
+      border-color: $dark-border !important;
+    }
+
+    .navbar-brand, .nav-link {
+      color: $dark-text !important;
+    }
+
+    .nav-link.active, .nav-link:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 // Utility Typography
 .tracking-wider { letter-spacing: 0.12em; }
 .tracking-widest { letter-spacing: 0.22em; }
 
+.text-muted-custom {
+  color: #b0b8c1 !important;
+}
+
+.form-label-custom {
+  color: #d1d5db !important;
+  font-weight: 600;
+}
+
+
 // ==========================================
-// 2. NAVBAR STICKY & EDITORIAL HEADER
+// 2. NAVBAR & HEADER EDITORIALE
 // ==========================================
+.navbar {
+  .nav-link {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
 .navbar-editorial {
   padding: 0.75rem 0;
-  
+
   .nav-box {
     border: 1px solid $light-border;
     font-size: 0.75rem;
@@ -77,123 +119,129 @@ body {
   }
 }
 
+
 // ==========================================
-// 3. CONTACT PAGE (DARK THEME & HIGH CONTRAST)
+// 3. HOMEPAGE & HERO SECTION
 // ==========================================
-
-// Forza lo sfondo scuro su tutta la pagina quando ha la classe bg-dark-theme
-body.bg-dark-theme, .bg-dark-theme {
-  background-color: $dark-bg !important;
-  color: $dark-text !important;
+.hero-section {
+  min-height: 380px;
+  background-color: #ffffff;
 }
 
-// Gestione Bordi Tema Scuro
-.border-bottom-dark {
-  border-bottom: 1px solid $dark-border !important;
+.hero-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.border-top-dark {
-  border-top: 1px solid $dark-border !important;
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.35;
 }
 
-// Box & Card della pagina Contatti
-.contact-card-dark {
-  background-color: $dark-card-bg !important;
-  border: 1px solid $dark-border !important;
-  border-radius: 4px;
-
-  // Correzione contrasto etichette e testi
-  .text-muted {
-    color: $dark-muted !important; // Garantisce grigio chiaro visibile
-  }
-
-  .text-light {
-    color: $dark-text !important; // Garantisce bianco puro per titoli e icone
-  }
-
-  h1, h2, .h6, p {
-    color: $dark-text;
-  }
+.hero-star {
+  font-size: 1rem;
+  color: $light-text;
 }
 
-// Form Moduli Scuri
-.form-control-dark {
-  background-color: #121212 !important;
-  border: 1px solid $dark-border !important;
-  color: $dark-text !important;
-  border-radius: 0;
-  padding: 0.8rem 1rem;
-  font-size: 0.88rem;
-
-  &:focus {
-    background-color: #121212 !important;
-    border-color: #ffffff !important;
-    color: #ffffff !important;
-    box-shadow: none;
-  }
-
-  &::placeholder {
-    color: #777777 !important;
-    font-size: 0.8rem;
-  }
+.hero-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  color: $light-text;
 }
 
-select.form-control-dark option {
-  background-color: $dark-card-bg;
-  color: $dark-text;
+.hero-bottom-bar {
+  border-color: #e5e5e5 !important;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
 }
 
-// Bottone d'invio form
-.btn-dark-submit {
-  background-color: #ffffff !important;
-  color: #0f0f0f !important;
-  border: 1px solid #ffffff !important;
+// Bottoni Editorial (con supporto responsive e hover)
+a.btn-editorial,
+.btn-editorial {
+  border: 1px solid $light-text;
+  background: transparent;
+  color: $light-text !important;
   font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  padding: 0.7rem 2rem;
   border-radius: 0;
+  text-decoration: none !important;
+  display: inline-block;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: transparent !important;
+    background: $light-text;
     color: #ffffff !important;
+    opacity: 1;
   }
 }
 
-// Accordion / FAQ Scuri
-.border-dark-box {
-  border: 1px solid $dark-border !important;
-  background-color: $dark-card-bg !important;
+// Cards Servizi
+.max-width-card {
+  max-width: 900px;
 }
 
-.accordion-dark {
-  .accordion-item {
-    background-color: $dark-card-bg !important;
-  }
+.service-card {
+  border-color: #d8d8d8 !important;
+  border-radius: 0;
+  background-color: #ffffff;
 
-  .accordion-button {
-    box-shadow: none !important;
-    color: $dark-text !important;
-    font-size: 0.95rem;
-
-    &:not(.collapsed) {
-      background-color: rgba(255, 255, 255, 0.03) !important;
-      color: $dark-text !important;
-    }
-
-    &::after {
-      filter: invert(1); // Rende la freccia dell'accordion bianca
-    }
-  }
-
-  .accordion-body {
-    color: $dark-text-sub !important;
-    line-height: 1.6;
+  &:hover .service-card-img-wrapper img {
+    filter: grayscale(0%);
   }
 }
+
+.service-card-title {
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  color: $light-text;
+  border-color: #d8d8d8 !important;
+  white-space: nowrap;
+}
+
+.service-card-img-wrapper {
+  width: 140px;
+  height: 180px;
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+
+  img {
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+}
+
+.service-list-dots li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 6px;
+
+  &::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: $light-text;
+  }
+}
+
 
 // ==========================================
-// 4. CV & HOME GENERAL STYLES
+// 4. PAGINA CURRICULUM (cv.html)
 // ==========================================
 .cv-container {
   max-width: 860px;
@@ -231,25 +279,113 @@ select.form-control-dark option {
   letter-spacing: 0.05em;
 }
 
-.btn-editorial {
-  border: 1px solid $light-text;
-  background: transparent;
-  color: $light-text;
+
+// ==========================================
+// 5. PAGINA CONTATTI (contatti.html - TEMA SCURO)
+// ==========================================
+.border-bottom-dark {
+  border-bottom: 1px solid $dark-border !important;
+}
+
+.border-top-dark {
+  border-top: 1px solid $dark-border !important;
+}
+
+.contact-card-dark {
+  background-color: $dark-card-bg !important;
+  border: 1px solid $dark-border !important;
+  border-radius: 8px;
+
+  .text-muted {
+    color: $dark-muted !important;
+  }
+
+  .text-light {
+    color: $dark-text !important;
+  }
+
+  h1, h2, .h6, p {
+    color: $dark-text;
+  }
+}
+
+.form-control-dark, body.page-dark .form-control, body.page-dark .form-select {
+  background-color: #121212 !important;
+  border: 1px solid $dark-border !important;
+  color: $dark-text !important;
+  border-radius: 0;
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+
+  &:focus {
+    background-color: #1c1c1c !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: #9ca3af !important;
+    font-size: 0.8rem;
+  }
+}
+
+select.form-control-dark option {
+  background-color: $dark-card-bg;
+  color: $dark-text;
+}
+
+.btn-dark-submit {
+  background-color: #ffffff !important;
+  color: #0f0f0f !important;
+  border: 1px solid #ffffff !important;
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  padding: 0.7rem 2rem;
+  font-weight: 700;
+  padding: 0.9rem;
   border-radius: 0;
   transition: all 0.3s ease;
 
   &:hover {
-    background: $light-text;
-    color: #ffffff;
+    background-color: transparent !important;
+    color: #ffffff !important;
   }
 }
 
+.border-dark-box {
+  border: 1px solid $dark-border !important;
+  background-color: $dark-card-bg !important;
+}
+
+.accordion-dark {
+  .accordion-item {
+    background-color: $dark-card-bg !important;
+    border: 1px solid $dark-border !important;
+  }
+
+  .accordion-button {
+    box-shadow: none !important;
+    color: $dark-text !important;
+    font-size: 0.95rem;
+
+    &:not(.collapsed) {
+      background-color: rgba(255, 255, 255, 0.05) !important;
+      color: $dark-text !important;
+    }
+
+    &::after {
+      filter: invert(1);
+    }
+  }
+
+  .accordion-body {
+    color: $dark-text-sub !important;
+    line-height: 1.6;
+  }
+}
+
+
 // ==========================================
-// 5. RESPONSIVE MEDIA QUERIES
+// 6. MEDIA QUERIES RESPONSIVE
 // ==========================================
 @media (max-width: 991.98px) {
   .navbar-editorial {
@@ -266,56 +402,3 @@ select.form-control-dark option {
     border-color: $dark-border !important;
   }
 }
- /* Regole di contrasto elevato */
-        body.bg-black {
-            background-color: #000000 !important;
-            color: #f8f9fa !important;
-        }
-        
-        .contact-card-dark {
-            background-color: #121212 !important;
-            border: 1px solid #333333 !important;
-            border-radius: 8px;
-        }
-        
-        /* Contrasto testo secondario/etichette */
-        .text-muted-custom {
-            color: #b0b8c1 !important; /* Grigio molto più chiaro e leggibile */
-        }
-        
-        .form-label-custom {
-            color: #d1d5db !important;
-            font-weight: 600;
-        }
-        
-        /* Stile campi di input per tema scuro */
-        .form-control-dark {
-            background-color: #1a1a1a !important;
-            border: 1px solid #444444 !important;
-            color: #ffffff !important;
-        }
-        
-        .form-control-dark::placeholder {
-            color: #9ca3af !important; /* Placeholder leggibile */
-        }
-        
-        .form-control-dark:focus {
-            background-color: #222222 !important;
-            border-color: #0d6efd !important;
-            color: #ffffff !important;
-            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
-        }
-
-        .border-bottom-dark, .border-top-dark {
-            border-color: #2a2a2a !important;
-        }
-
-        .accordion-button:not(.collapsed) {
-            background-color: #1a1a1a !important;
-            color: #ffffff !important;
-        }
-        
-        .accordion-item {
-            border: 1px solid #333333 !important;
-            background-color: #0a0a0a !important;
-        }
