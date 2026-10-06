@@ -266,3 +266,56 @@ select.form-control-dark option {
     border-color: $dark-border !important;
   }
 }
+ /* Regole di contrasto elevato */
+        body.bg-black {
+            background-color: #000000 !important;
+            color: #f8f9fa !important;
+        }
+        
+        .contact-card-dark {
+            background-color: #121212 !important;
+            border: 1px solid #333333 !important;
+            border-radius: 8px;
+        }
+        
+        /* Contrasto testo secondario/etichette */
+        .text-muted-custom {
+            color: #b0b8c1 !important; /* Grigio molto più chiaro e leggibile */
+        }
+        
+        .form-label-custom {
+            color: #d1d5db !important;
+            font-weight: 600;
+        }
+        
+        /* Stile campi di input per tema scuro */
+        .form-control-dark {
+            background-color: #1a1a1a !important;
+            border: 1px solid #444444 !important;
+            color: #ffffff !important;
+        }
+        
+        .form-control-dark::placeholder {
+            color: #9ca3af !important; /* Placeholder leggibile */
+        }
+        
+        .form-control-dark:focus {
+            background-color: #222222 !important;
+            border-color: #0d6efd !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+        }
+
+        .border-bottom-dark, .border-top-dark {
+            border-color: #2a2a2a !important;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #1a1a1a !important;
+            color: #ffffff !important;
+        }
+        
+        .accordion-item {
+            border: 1px solid #333333 !important;
+            background-color: #0a0a0a !important;
+        }
