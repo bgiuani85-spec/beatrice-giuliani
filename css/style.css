@@ -1,38 +1,128 @@
-/* ==========================================
-   SETUP GLOBALE & TIPOGRAFIA
-   ========================================== */
+// ==========================================
+// 1. VARIABILI E SETUP GLOBALE
+// ==========================================
+$font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+// Palette Light (Home & CV)
+$light-bg: #ffffff;
+$light-bg-alt: #f8f8f6;
+$light-text: #1a1a1a;
+$light-border: #e0e0dc;
+$light-muted: #666666;
+
+// Palette Dark (Contatti) - Contrasti Ottimizzati
+$dark-bg: #0f0f0f;
+$dark-card-bg: #181818;
+$dark-text: #ffffff;      // Testo principale
+$dark-text-sub: #d0d0d0;  // Sottotitoli / valori ad alto contrasto
+$dark-border: #2e2e2e;
+$dark-muted: #a0a0a0;     // Etichette ben visibili
+
+// Reset & Base
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
-    padding-left: 16px;
-    padding-right: 16px;
-    box-sizing: border-box;
-}
-
-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: $font-main;
+  color: $light-text;
+  background-color: $light-bg;
   line-height: 1.6;
+  letter-spacing: 0.01em;
+  padding-left: 16px;
+  padding-right: 16px;
+  -webkit-font-smoothing: antialiased;
+
+  &.page-dark, &.bg-dark-theme, &.bg-black {
+    background-color: $dark-bg !important;
+    color: $dark-text !important;
+
+    header, footer, main {
+      background-color: $dark-bg !important;
+      border-color: $dark-border !important;
+    }
+
+    .navbar-brand, .nav-link {
+      color: $dark-text !important;
+    }
+
+    .nav-link.active, .nav-link:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
+// Utility Typography
 .tracking-wider { letter-spacing: 0.12em; }
 .tracking-widest { letter-spacing: 0.22em; }
 
-/* Header Navigation */
-.navbar .nav-link {
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.text-muted-custom {
+  color: #b0b8c1 !important;
 }
 
-.navbar .nav-link:hover {
-  opacity: 0.6;
+.form-label-custom {
+  color: #d1d5db !important;
+  font-weight: 600;
 }
 
-/* ==========================================
-   HERO SECTION
-   ========================================== */
+
+// ==========================================
+// 2. NAVBAR & HEADER EDITORIALE
+// ==========================================
+.navbar {
+  .nav-link {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.navbar-editorial {
+  padding: 0.75rem 0;
+
+  .nav-box {
+    border: 1px solid $light-border;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.45rem 1rem !important;
+    color: $light-text !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.25s ease-in-out;
+
+    &:hover, &.active {
+      background-color: $light-text;
+      color: #ffffff !important;
+      border-color: $light-text;
+    }
+  }
+
+  .nav-box-dark {
+    border: 1px solid $dark-border;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.45rem 1rem !important;
+    color: $dark-text !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.25s ease-in-out;
+
+    &:hover, &.active {
+      background-color: $dark-text;
+      color: $dark-bg !important;
+      border-color: $dark-text;
+    }
+  }
+}
+
+
+// ==========================================
+// 3. HOMEPAGE & HERO SECTION
+// ==========================================
 .hero-section {
   min-height: 380px;
   background-color: #ffffff;
@@ -58,7 +148,7 @@ body {
 
 .hero-star {
   font-size: 1rem;
-  color: #1a1a1a;
+  color: $light-text;
 }
 
 .hero-title {
@@ -66,7 +156,7 @@ body {
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0.04em;
-  color: #1a1a1a;
+  color: $light-text;
 }
 
 .hero-bottom-bar {
@@ -77,26 +167,29 @@ body {
   letter-spacing: 0.08em;
 }
 
+// Bottoni Editorial (con supporto responsive e hover)
 a.btn-editorial,
 .btn-editorial {
-  color: #1a1a1a !important;
-  border-bottom: 1px solid #1a1a1a;
-  padding-bottom: 2px;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
+  border: 1px solid $light-text;
+  background: transparent;
+  color: $light-text !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  padding: 0.7rem 2rem;
+  border-radius: 0;
   text-decoration: none !important;
   display: inline-block;
-  transition: opacity 0.2s ease;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: $light-text;
+    color: #ffffff !important;
+    opacity: 1;
+  }
 }
 
-a.btn-editorial:hover,
-.btn-editorial:hover {
-  opacity: 0.6;
-}
-
-/* ==========================================
-   SEZIONE SERVIZI (LAYOUT CARD EDITORIALE)
-   ========================================== */
+// Cards Servizi
 .max-width-card {
   max-width: 900px;
 }
@@ -105,13 +198,17 @@ a.btn-editorial:hover,
   border-color: #d8d8d8 !important;
   border-radius: 0;
   background-color: #ffffff;
+
+  &:hover .service-card-img-wrapper img {
+    filter: grayscale(0%);
+  }
 }
 
 .service-card-title {
   font-size: 0.82rem;
   letter-spacing: 0.12em;
   font-weight: 500;
-  color: #1a1a1a;
+  color: $light-text;
   border-color: #d8d8d8 !important;
   white-space: nowrap;
 }
@@ -121,66 +218,187 @@ a.btn-editorial:hover,
   height: 180px;
   overflow: hidden;
   border: 1px solid #eaeaea;
-}
 
-.service-card-img-wrapper img {
-  object-fit: cover;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
-}
-
-.service-card:hover .service-card-img-wrapper img {
-  filter: grayscale(0%);
+  img {
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
 }
 
 .service-list-dots li {
   position: relative;
   padding-left: 14px;
   margin-bottom: 6px;
+
+  &::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: $light-text;
+  }
 }
 
-.service-list-dots li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #1a1a1a;
+
+// ==========================================
+// 4. PAGINA CURRICULUM (cv.html)
+// ==========================================
+.cv-container {
+  max-width: 860px;
 }
 
-/* ==========================================
-   PAGINA CONTATTI (SFONDO SCURO)
-   ========================================== */
-body.page-dark {
-  background-color: #0d0d0d !important;
-  color: #ffffff !important;
+.cv-top-bar {
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  border-color: $light-border !important;
 }
 
-body.page-dark header,
-body.page-dark footer,
-body.page-dark main {
-  background-color: #0d0d0d !important;
-  border-color: #262626 !important;
+.cv-name {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: $light-text;
 }
 
-body.page-dark .navbar-brand,
-body.page-dark .nav-link {
-  color: #ffffff !important;
+.cv-subtitle {
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
-body.page-dark .nav-link.active,
-body.page-dark .nav-link:hover {
-  opacity: 0.7;
+.cv-photo {
+  width: 160px;
+  height: 180px;
+  object-fit: cover;
+  display: inline-block;
 }
 
-body.page-dark .form-control,
-body.page-dark .form-select {
-  background-color: #1a1a1a !important;
-  border-color: #333333 !important;
-  color: #ffffff !important;
+.cv-section-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
 }
 
-body.page-dark .form-control:focus {
-  background-color: #222222 !important;
-  border-color: #666666 !important;
-  color: #ffffff !important;
-  box-shadow: none;
+
+// ==========================================
+// 5. PAGINA CONTATTI (contatti.html - TEMA SCURO)
+// ==========================================
+.border-bottom-dark {
+  border-bottom: 1px solid $dark-border !important;
+}
+
+.border-top-dark {
+  border-top: 1px solid $dark-border !important;
+}
+
+.contact-card-dark {
+  background-color: $dark-card-bg !important;
+  border: 1px solid $dark-border !important;
+  border-radius: 8px;
+
+  .text-muted {
+    color: $dark-muted !important;
+  }
+
+  .text-light {
+    color: $dark-text !important;
+  }
+
+  h1, h2, .h6, p {
+    color: $dark-text;
+  }
+}
+
+.form-control-dark, body.page-dark .form-control, body.page-dark .form-select {
+  background-color: #121212 !important;
+  border: 1px solid $dark-border !important;
+  color: $dark-text !important;
+  border-radius: 0;
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+
+  &:focus {
+    background-color: #1c1c1c !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: #9ca3af !important;
+    font-size: 0.8rem;
+  }
+}
+
+select.form-control-dark option {
+  background-color: $dark-card-bg;
+  color: $dark-text;
+}
+
+.btn-dark-submit {
+  background-color: #ffffff !important;
+  color: #0f0f0f !important;
+  border: 1px solid #ffffff !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.9rem;
+  border-radius: 0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: transparent !important;
+    color: #ffffff !important;
+  }
+}
+
+.border-dark-box {
+  border: 1px solid $dark-border !important;
+  background-color: $dark-card-bg !important;
+}
+
+.accordion-dark {
+  .accordion-item {
+    background-color: $dark-card-bg !important;
+    border: 1px solid $dark-border !important;
+  }
+
+  .accordion-button {
+    box-shadow: none !important;
+    color: $dark-text !important;
+    font-size: 0.95rem;
+
+    &:not(.collapsed) {
+      background-color: rgba(255, 255, 255, 0.05) !important;
+      color: $dark-text !important;
+    }
+
+    &::after {
+      filter: invert(1);
+    }
+  }
+
+  .accordion-body {
+    color: $dark-text-sub !important;
+    line-height: 1.6;
+  }
+}
+
+
+// ==========================================
+// 6. MEDIA QUERIES RESPONSIVE
+// ==========================================
+@media (max-width: 991.98px) {
+  .navbar-editorial {
+    .navbar-collapse {
+      background: $light-bg;
+      padding: 1rem;
+      border: 1px solid $light-border;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .bg-dark-theme .navbar-editorial .navbar-collapse {
+    background: $dark-card-bg !important;
+    border-color: $dark-border !important;
+  }
 }
